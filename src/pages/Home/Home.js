@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {util} from '@shengliang74/utils';
 
 export default class Home extends Component {
     constructor(props) {

@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const {CleanWebpackPlugin} = require("clean-webpack-plugin");
 
 const extractSass = new ExtractTextPlugin({
     filename: "[name].[hash].css",
@@ -10,7 +11,7 @@ const extractSass = new ExtractTextPlugin({
 
 const isDebug = true;
 
-var pxtorem = require('postcss-pxtorem');
+// var pxtorem = require('postcss-pxtorem');
 
 module.exports = {
     mode:"development",
@@ -74,6 +75,7 @@ module.exports = {
         }
     },
     plugins:[
+        new CleanWebpackPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({
             favicon: path.resolve(__dirname, "./src/assets/th.jpg"),  
