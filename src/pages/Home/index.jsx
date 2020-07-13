@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import Header from '$component/Header/index.jsx'
+import test from "../../test/index";
 import {util} from '@shengliang74/utils';
 
 export default class Home extends Component {
@@ -17,11 +19,11 @@ export default class Home extends Component {
 
     render() {
         return (
-            <div>
+            <div className="m-home">
+                <Header />
                 this is home~<br/>
                 当前计数：{this.state.count}<br/>
                 <button onClick={() => this._handleClick()}>自增</button>
-                <iframe src="http://localhost:8089/edit.html" scrolling="yes" style={{border:"1px solid red"}} width="375px" height="667px"></iframe>
             </div>
         )
     }

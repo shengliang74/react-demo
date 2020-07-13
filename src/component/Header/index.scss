@@ -1,0 +1,11 @@
+.m-header {
+    ul {
+        display: flex;
+        justify-content: flex-end;
+        li {
+            display: inline-block;
+            width: 30px;
+            border-right: 1px solid red;
+        }
+    }
+}

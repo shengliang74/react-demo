@@ -1,8 +1,11 @@
 import React from 'react';
 import ReactDom from 'react-dom';
+import 'babel-polyfill';
 import {AppContainer} from 'react-hot-loader';
 import getRouter from '$router/router';
 import "./style/global.scss";
+
+
 
 /*初始化*/
 renderWithHotReload(getRouter());
