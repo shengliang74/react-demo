@@ -1,31 +1,10 @@
 const path = require('path');
+const {merge} = require('webpack-merge');
+const common = require('./webpack.common.js');
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
-const extractSass = new ExtractTextPlugin({
-    filename: "[name].[hash].css",
-    disable: process.env.NODE_ENV === "development"
-});
-
-const isDebug = true;
-
-// var pxtorem = require('postcss-pxtorem');
-
-module.exports = {
+module.exports = merge(common, {
     mode: "development",
-    /*入口*/
-    entry: {
-        index: path.join(__dirname, './src/index.js')
-    },
-    /*输出到dist文件夹，输出文件名字为bundle.js*/
-    output: {
-        path: path.join(__dirname, './dist'),
-        filename: 'js/[name].[hash].js',           //每个页面对应的主js的生成配置
-        chunkFilename: 'js/[id].chunk.js',   //chunk生成的配置
-        publicPath: "/"
-    },
     devServer: {
         port: 8089,
         contentBase: path.join(__dirname, './dist'),
@@ -33,77 +12,8 @@ module.exports = {
         // host: '192.168.0.106'
         host: '127.0.0.1'
     },
-    module: {
-        rules: [{
-            test: /\.js(x?)$/,
-            use: ['babel-loader?cacheDirectory=true'],
-            include: path.join(__dirname, 'src')
-        }, {
-            test: /\.css$/,
-            use: ['style-loader', 'css-loader', 'postcss-loader']
-        }, {
-            test: /\.scss$/,
-            use: extractSass.extract({
-                use: [{
-                    loader: "css-loader"
-                }, {
-                    loader: "postcss-loader"
-                }, {
-                    loader: "sass-loader"
-                }],
-                // 在开发环境使用 style-loader
-                fallback: "style-loader"
-            })
-        }, {
-            test: /\.(ico|jpg|jpeg|png|gif)(\?.*)?$/,
-            loader: 'url-loader',
-            options: {
-                limit: 8192,
-                name: '[name].[ext]?[hash]'
-            }
-        }, {
-            test: /\.(eot|otf|webp|svg|ttf|woff|woff2)(\?.*)?$/,
-            loader: 'file-loader',
-            query: {
-                name: isDebug ? '[path][name].[ext]?[hash:8]' : '[hash:8].[ext]',
-            }
-        }, {
-            test: /\.html$/,
-            use: {
-                loader: 'html-loader',
-                options: {
-                    attributes: {
-                        list: [
-                            {
-                                tag: 'img',
-                                attribute: 'src',
-                                type: 'src',
-                            },
-                        ]
-                    }
-                }
-            }
-        }]
-    },
     devtool: 'inline-source-map',
-    resolve: {
-        extensions: ['.js','.jsx'],
-        alias: {
-            "$pages": path.join(__dirname, 'src/pages'),
-            "$component": path.join(__dirname, 'src/component'),
-            "$router": path.join(__dirname, 'src/router'),
-            "$style": path.join(__dirname, 'src/style')
-        }
-    },
     plugins: [
-        new CleanWebpackPlugin(),
-        new webpack.HotModuleReplacementPlugin(),
-        new HtmlWebpackPlugin({
-            favicon: path.resolve(__dirname, "./src/assets/th.jpg"),
-            filename: "index.html",
-            template: path.resolve(__dirname, "./src/index.html"),
-            excludeChunks: ['edit']
-        }),
-        extractSass
+        new webpack.HotModuleReplacementPlugin()
     ]
-};
+})

@@ -9,10 +9,6 @@ module.exports = {
         "ff > 31",
         "ie >= 8"
       ]
-    },
-    'postcss-pxtorem': {
-      rootValue: 75,
-      propList: ['*']
     }
   }
 }

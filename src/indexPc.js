@@ -20,6 +20,6 @@ function renderWithHotReload(RootElement) {
         <AppContainer>
             {RootElement}
         </AppContainer>,
-        document.getElementById('app')
+        document.getElementById('pc')
     )
 }
