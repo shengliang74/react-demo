@@ -79,7 +79,7 @@ module.exports = {
         }]
     },
     resolve: {
-        extensions: [".ts",'tsx','.js','.jsx'],
+        extensions: [".webpack.js", ".web.js", ".ts", ".tsx", ".js", '.jsx'],
         alias: {
             "$pages": path.join(__dirname, 'src/pages'),
             "$component": path.join(__dirname, 'src/component'),
