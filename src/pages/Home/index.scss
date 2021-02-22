@@ -2,4 +2,11 @@
     .header {
         
     }
+    .homeContent {
+        display: flex;
+        justify-content: space-between;
+    }
+    .iframeContent {
+        border: 1px solid #EEEEEE;
+    }
 }

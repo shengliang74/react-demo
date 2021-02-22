@@ -1,4 +1,4 @@
-export const bigClassComList = [
+export const bigClassComList: Object[] = [
     {
         type: 'button',
         name: '按钮',

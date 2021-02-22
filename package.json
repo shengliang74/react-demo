@@ -43,7 +43,7 @@
     "webpack-merge": "^5.2.0"
   },
   "dependencies": {
-    "@shengliang74/utils": "^1.0.3",
+    "@shengliang74/utils": "^1.0.5",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "autoprefixer": "^9.6.1",
