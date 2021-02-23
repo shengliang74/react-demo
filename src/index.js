@@ -3,6 +3,7 @@ import ReactDom from 'react-dom';
 import 'babel-polyfill';
 import {AppContainer} from 'react-hot-loader';
 import getRouter from '$router/router';
+import 'antd/dist/antd.css';
 import "./style/global.scss";
 
 /*初始化*/

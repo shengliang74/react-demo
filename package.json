@@ -44,8 +44,10 @@
   },
   "dependencies": {
     "@shengliang74/utils": "^1.0.5",
+    "@types/lodash": "^4.14.168",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
+    "antd": "^4.12.3",
     "autoprefixer": "^9.6.1",
     "awesome-typescript-loader": "^5.2.1",
     "node-sass": "^4.12.0",
