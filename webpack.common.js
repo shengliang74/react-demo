@@ -9,6 +9,8 @@ const extractSass = new ExtractTextPlugin({
     disable: process.env.NODE_ENV === "development"
 });
 
+console.log(process.env)
+const isProd = process.env.NODE_ENV == 'prod';
 
 const isDebug = true;
 
@@ -20,20 +22,17 @@ module.exports = {
     /*输出到dist文件夹，输出文件名字为bundle.js*/
     output: {
         path: path.join(__dirname, './dist'),
-        filename: 'js/[name].[hash].js',           //每个页面对应的主js的生成配置
+        filename: isProd ? 'js/[name].[chunkhash].js' : 'js/[name].js',           //每个页面对应的主js的生成配置
         chunkFilename: 'js/[id].chunk.js',   //chunk生成的配置
         publicPath: "/"
     },
     module: {
         rules: [{
-            test: /\.tsx?$/, loader: "awesome-typescript-loader" 
-        },{
+            test: /\.tsx?$/, loader: "awesome-typescript-loader"
+        }, {
             test: /\.js(x?)$/,
             use: ['babel-loader?cacheDirectory=true'],
             include: path.join(__dirname, 'src')
-        }, {
-            test: /\.css$/,
-            use: ['style-loader', 'css-loader', 'postcss-loader']
         }, {
             test: /\.scss$/,
             use: extractSass.extract({
@@ -47,7 +46,10 @@ module.exports = {
                 // 在开发环境使用 style-loader
                 fallback: "style-loader"
             })
-        }, {
+        },{
+            test: /\.css$/,
+            use: ['style-loader', 'css-loader', 'postcss-loader']
+        },{
             test: /\.(ico|jpg|jpeg|png|gif)(\?.*)?$/,
             loader: 'url-loader',
             options: {
@@ -100,6 +102,25 @@ module.exports = {
             filename: "indexPc.html",
             template: path.resolve(__dirname, "./src/indexPc.html"),
         }),
-        extractSass
-    ]
+        extractSass,
+    ],
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                commons: {
+                    name: 'commons',
+                    chunks: 'initial',
+                    minChunks: 2,
+                },
+                vendor: {
+                    test: /[\\/]node_modules[\\/](react|react-dom|react-router-dom|antd)[\\/]/,
+                    name: 'vendor',
+                    chunks: 'all',
+                },
+            },
+        },
+        // runtimeChunk: { name: "runtime" },
+
+
+    },
 };

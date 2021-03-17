@@ -1,0 +1,28 @@
+.com-wrap66 {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    width: 100vw;
+    .wrapLeft {
+        width: 50%;
+        flex-grow: 1;
+    }
+    .wrapRight {
+        width: 50%;
+        flex-grow: 1;
+    }
+}
+.editing {
+    .com-wrap66 {
+        padding: 10px;
+        height: 100px;
+        border: 1px solid #DDDDDD;
+        background-color: #F5F5F5;
+        .wrapLeft {
+            border: 1px solid #DDDDDD;
+        }
+        .wrapRight {
+            border: 1px solid #DDDDDD;
+        }
+    }
+}

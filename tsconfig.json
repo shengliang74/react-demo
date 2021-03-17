@@ -6,7 +6,7 @@
         "outDir": "./dist/", // 重定向输出目录
         "sourceMap": true, // 生成相应的 .map文件
         "noImplicitAny": true, // 在表达式和声明上有隐含的 any类型时报错。（默认为false，个人建议也为false，可以兼容之前的js代码，这里改为true是为了我自己检测哪些类型需要处理）
-        "module": "es2015", // 模块引入方式
+        "module": "esnext", // 模块引入方式
         "target": "es5", // 指定ECMAScript目标版本
         "moduleResolution": "node", // 决定如何处理模块
         "lib": ["es5", "es6", "es7", "dom"], // 编译过程中需要引入的库文件的列表。

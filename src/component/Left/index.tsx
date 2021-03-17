@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {Card} from 'antd';
-import {bigClassComList} from './comType';
 import CatalogList from '../CatalogList'
-// import * as abc  from '@shengliang74/utils';
+import * as abc  from '@shengliang74/utils';
 import "./index.scss"
 
 interface Props {
@@ -18,26 +17,11 @@ enum TitleKeyEnum {
 export default function Left(props:Props){
     const [titleKey, setTitleKey] = useState(TitleKeyEnum.componentsList); 
     const {changeComponent} = props;
-    const clickCom = function(data:any){
-        if(changeComponent){
-            changeComponent(data);
-        }
-    }
-    // 组件列表
-    const comList = function(){
-        return bigClassComList.map((item:any)=>{
-            return (
-                <div key={item.name}  onClick={()=>{clickCom(item)}}>
-                    {item.name}
-                </div>
-            )
-        })
-    }
     // 标题内容Dom
     const contentListNoTitle = {
-        componentsList: CatalogList(),
+        componentsList: <CatalogList changeComponent={changeComponent}/>,
         empty1: <p>empty1</p>,
-        empty2: <p>empty2</p>
+        empty2: <p>empty222222</p>
     }
     // 标题列表
     const tabListNoTitle = [
@@ -45,6 +29,9 @@ export default function Left(props:Props){
         {key: TitleKeyEnum.empty1,tab: "空1"},
         {key: TitleKeyEnum.empty2,tab: "空2"}
     ]
+    useEffect(function(){
+        console.log(abc)
+    },[])
     return (
         <div className="m-left">
             <Card

@@ -1,0 +1,27 @@
+
+.com-nav-bottom {
+    position: absolute;
+    bottom: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+    padding: 0;
+    width: 100%;
+    height: 50px;
+    background-color: #999;
+    list-style: none;
+  }
+  .navLi {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    height: 50px;
+    text-align: center;
+  }
+  .navIcon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+  }

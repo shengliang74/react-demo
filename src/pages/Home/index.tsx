@@ -33,8 +33,7 @@ export default class Home extends BasePage {
     }
 
     changeComponent = (data:Object) => {
-        console.log(data)
-        this.iframeId.contentWindow.postMessage(data)
+        this.iframeId.contentWindow.postMessage(data,"http://127.0.0.1:8089/page1")
     }
 
     render() {
@@ -43,7 +42,7 @@ export default class Home extends BasePage {
                 <Header />
                 <div className="homeContent">
                     <Left changeComponent={this.changeComponent} />
-                    <iframe id="iframeId" className="iframeContent" width="375" height="667" src="http://127.0.0.1:8089/page1" />
+                    <iframe  id="iframeId" className="iframeContent" width="375" height="667" src="http://127.0.0.1:8089/page1" />
                     <Right />
                 </div>
                 <Footer />
