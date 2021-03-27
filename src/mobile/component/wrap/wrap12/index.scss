@@ -1,8 +1,10 @@
 .editing {
     .com-wrap12 {
         display: flex;
+        margin: 30px 0;
+        padding: 30px 0;
         width: 100vw;
-        height: 100px;
+        min-height: 100px;
         border: 1px solid #DDDDDD;
         background-color: #F5F5F5;
     }

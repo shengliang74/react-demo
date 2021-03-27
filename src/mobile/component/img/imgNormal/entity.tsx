@@ -1,6 +1,7 @@
+import {ComponentType} from "@/mobile/const/componentType"
 export default {
     //图片组件
-    "type": "picture",   //组件类型
+    "type": ComponentType.img_normal,   //组件类型
     "style": {
         "opacity": 1,   //透明度
         "backgroundColor": "rgba(255, 0, 0, 0)",  //背景色

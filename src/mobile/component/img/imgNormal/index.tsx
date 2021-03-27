@@ -1,5 +1,5 @@
 import React from 'react';
-import entity from './entity.js';
+import entity from './entity';
 import './index.scss';
 
 export default function ImgNormal(props:any) {

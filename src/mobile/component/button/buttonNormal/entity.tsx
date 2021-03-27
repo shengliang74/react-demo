@@ -1,5 +1,7 @@
+import {ComponentType} from "@/mobile/const/componentType"
+
 export default {
-    "type": "button-normal", //组件类型
+    "type": ComponentType.button_normal, //组件类型
     "style": {
         "backgroundColor": "#E4E5E7", //按钮背景色
         "backgroundImage": "", //按钮背景图片  跟背景色二选一

@@ -1,7 +1,7 @@
-
+import {ComponentType} from "@/mobile/const/componentType"
 export default {
     //标题组件
-    "type": "navigation",
+    "type": ComponentType.wrap_wrap66,
     "style": {
     },
     "content": {

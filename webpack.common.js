@@ -9,9 +9,7 @@ const extractSass = new ExtractTextPlugin({
     disable: process.env.NODE_ENV === "development"
 });
 
-console.log(process.env)
 const isProd = process.env.NODE_ENV == 'prod';
-
 const isDebug = true;
 
 module.exports = {
@@ -83,10 +81,11 @@ module.exports = {
     resolve: {
         extensions: [".webpack.js", ".web.js", ".ts", ".tsx", ".js", '.jsx'],
         alias: {
-            "$pages": path.join(__dirname, 'src/pages'),
-            "$component": path.join(__dirname, 'src/component'),
-            "$router": path.join(__dirname, 'src/router'),
-            "$style": path.join(__dirname, 'src/style')
+            "@": path.join(__dirname, './src'),
+            "$pages": path.join(__dirname, './src/pages'),
+            "$component": path.join(__dirname, './src/component'),
+            "$router": path.join(__dirname, './src/router'),
+            "$style": path.join(__dirname, './src/style')
         }
     },
     plugins: [

@@ -7,14 +7,21 @@ interface IProps {
     // com2: React.ReactElement
 }
 export default function Wrap66(props:any) {
-    const {children} = props;
+    const {children, isInMenu, id} = props;
     let com1 = "", com2 = "";
     if(Array.isArray(children)){
         com1 = children[0];
         com2 = children[1]
     }
+    console.log("zzzzzzzzz")
+    console.log(children)
+    const drag = function (ev: any, data:string):void {
+        ev.dataTransfer.setData("Text", data);
+        ev.dataTransfer.setData("handleType", isInMenu ? "add" : "move");
+        ev.dataTransfer.setData("id", id);
+    }
     return(
-        <div className="com-wrap66">
+        <div id={id} className="com-wrap66" draggable="true" onDragStart={(ev)=>{drag(ev, "wrap_wrap66")}} >
             <div className="wrapLeft">
                 {com1}
             </div>
