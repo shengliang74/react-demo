@@ -1,4 +1,5 @@
 import React from 'react';
+import { drag } from '@/utils/utils'
 import entity from './entity';
 import './index.scss';
 

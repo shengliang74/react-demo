@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { drag } from '@/utils/utils'
 import entity from './entity';
 import "./index.scss";
 
@@ -10,8 +11,9 @@ interface NavLi {
 }
 
 export default function NavBottom(props: any) {
-    let { moduleData, triggerEditor } = props;
+    let { moduleData } = props;
     moduleData = Object.assign(entity, moduleData);
+    const { triggerEditor } = props;
     const onCDivClick = () => {
         triggerEditor && triggerEditor(moduleData);
     }

@@ -1,5 +1,4 @@
 import {ComponentType} from "@/mobile/const/componentType"
-
 export default {
     "type": ComponentType.button_normal, //组件类型
     "style": {
@@ -46,7 +45,6 @@ export default {
         "action": "inner-link", //跳转方式   行内跳转
         "jumpUrl": "https://m.baidu.com/"
     },
-    "animations": [],
     "hidden": false,
     "id": "" //组件的实例化ID
 }

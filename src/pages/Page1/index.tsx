@@ -8,8 +8,8 @@ import {
     Wrap66,
     WrapDiv
 } from "../../mobile/component";
-import {ComponentType} from "@/mobile/const/componentType";
 import {getInDomData, getRandomNumber} from "@/utils/utils";
+import {ComponentType} from "@/mobile/const/componentType";
 import { util } from "@shengliang74/utils"
 import './index.scss';
 
@@ -68,6 +68,9 @@ export default class Page1 extends Component {
         }
     }
     getComponents = (com: IComponentListItem) => {
+        if(!com){
+            return null
+        }
         const dom = com.children ? com.children.map((it:IComponentListItem) => this.getComponents(it)) : "";
         switch (com.type) {
             case ComponentType.wrap_wrap12:
@@ -77,47 +80,51 @@ export default class Page1 extends Component {
             case ComponentType.wrap_wrapDiv:
                 return <WrapDiv id={com.id}>{dom}</WrapDiv>
             case ComponentType.button_normal:
-                return <ButtonNormal />
+                return <ButtonNormal id={com.id} />
             case ComponentType.img_normal:
-                return <ImgNormal />
+                return <ImgNormal id={com.id} />
             case ComponentType.nav_bottom:
-                return <NavBottom />
+                return <NavBottom id={com.id} />
             case ComponentType.text_cricle:
-                return <TextCricle />
+                return <TextCricle id={com.id} />
         }
+    }
+    getComponentInitData = (componentType:string):IComponentListItem => {
+        const addObj:IComponentListItem = {
+            id:`${componentType}-${getRandomNumber()}`,
+            type: componentType
+        }
+        if(componentType && componentType.indexOf('wrap') > -1){
+            addObj['children'] = []
+        }
+        if(componentType === ComponentType.wrap_wrap66){
+            addObj.children.push(
+                {
+                    id: `wrap_wrapDiv-${getRandomNumber()}`,
+                    type: 'wrap_wrapDiv',
+                    children: []
+                },
+                {
+                    id: `wrap_wrapDiv-${getRandomNumber()}`,
+                    type: 'wrap_wrapDiv',
+                    children: []
+                }
+            )
+        }
+        return addObj
     }
     drop = (ev:any) => {
         ev.preventDefault();
-        var data = ev.dataTransfer.getData("Text");
-        var handleType = ev.dataTransfer.getData("handleType");
-        var domId = ev.dataTransfer.getData("id");
+        let data = ev.dataTransfer.getData("Text");
+        let handleType = ev.dataTransfer.getData("handleType");
+        let domId = ev.dataTransfer.getData("id");
         const {componentList} = this.state;
         if(data){
             console.log(data,handleType)
             console.log(ev)
             console.log(ev.target.id)
             if(handleType === 'add'){
-                const addObj:IComponentListItem = {
-                    id:`${data}-${getRandomNumber()}`,
-                    type: data
-                }
-                if(data && data.indexOf('wrap') > -1){
-                    addObj['children'] = []
-                }
-                if(data === 'wrap_wrap66'){
-                    addObj.children.push(
-                        {
-                            id: `wrap_wrapDiv-${getRandomNumber()}`,
-                            type: 'wrap_wrapDiv',
-                            children: []
-                        },
-                        {
-                            id: `wrap_wrapDiv-${getRandomNumber()}`,
-                            type: 'wrap_wrapDiv',
-                            children: []
-                        }
-                    )
-                }
+                const addObj = this.getComponentInitData(data);
                 debugger
                 this.addComponent(componentList, ev.target.id, componentList.length, addObj);
                 const newComponentList = util.copy(componentList);
@@ -130,7 +137,8 @@ export default class Page1 extends Component {
                     const {pageX, pageY} = ev;
                     const newChildrenDomList = [].slice.call(childrenDomList)
                     const coordinateList = newChildrenDomList.map((it:any) => it.getBoundingClientRect())
-                    let place = null;
+                    let place = newChildrenDomList.length === 0 ? 0 : null;
+                    debugger
                     let len = coordinateList.length;
                     let lastData = null;
                     for(let i=0;i<len; i++){

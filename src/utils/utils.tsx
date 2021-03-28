@@ -1,8 +1,9 @@
-import {util} from "@shengliang74/utils";
+import { util } from "@shengliang74/utils";
+import {HandelTypeEnum} from "@/mobile/const/common";
 
 // 计算 pageX pageY 相对DOMReact的位置信息用于上移还是下移
-export const getInDomData = function (DOMReact:IDOMReact, pageX:number, pageY:number): IDomPlaceInfo {
-    const obj:IDomPlaceInfo = {
+export const getInDomData = function (DOMReact: IDOMReact, pageX: number, pageY: number): IDomPlaceInfo {
+    const obj: IDomPlaceInfo = {
         isInDom: false, // 是否在DOMReact Dom里
         isInsideTop: false, // DOMReact dom 里面的上半部
         isInsideBottom: false, // DOMReact dom 里面的下半部
@@ -10,13 +11,13 @@ export const getInDomData = function (DOMReact:IDOMReact, pageX:number, pageY:nu
         isOutsideBottom: false // DOMReact dom 下面
     }
 
-    if(!(DOMReact instanceof Object)){
+    if (!(DOMReact instanceof Object)) {
         return obj
     }
 
     const xFlag = pageX > DOMReact.left && pageX < DOMReact.right;
     const yFlag = pageY > DOMReact.top && pageY < DOMReact.bottom;
-    const yCenter = (DOMReact.bottom - DOMReact.top)/2+DOMReact.top;
+    const yCenter = (DOMReact.bottom - DOMReact.top) / 2 + DOMReact.top;
     obj.isInDom = xFlag && yFlag;
     obj.isOutsideTop = pageY < DOMReact.top;
     obj.isInsideTop = pageY >= DOMReact.top && pageY < yCenter;
@@ -26,6 +27,14 @@ export const getInDomData = function (DOMReact:IDOMReact, pageX:number, pageY:nu
 }
 
 // 获取一个随机数
-export const getRandomNumber = function ():string {
-    return `${new Date().getTime()}-${Math.floor(Math.random()*10000)}`
+export const getRandomNumber = function (): string {
+    return `${new Date().getTime()}-${Math.floor(Math.random() * 10000)}`
+}
+
+export const drag = function (ev: any, data: string, isInMenu:boolean, id: string|undefined|null): void {
+    
+    ev.dataTransfer.setData("Text", data);
+    ev.dataTransfer.setData("handleType", isInMenu ? HandelTypeEnum.add : HandelTypeEnum.move);
+    ev.dataTransfer.setData("id", id);
+    ev.stopPropagation();
 }

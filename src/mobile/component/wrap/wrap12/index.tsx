@@ -1,23 +1,25 @@
 import React from 'react';
+import entity from './entity';
+import { drag } from '@/utils/utils';
+import {ComponentType} from "@/mobile/const/componentType";
 import "./index.scss";
 
-interface IProps {
-    com1: any
-}
-
 export default function Wrap12(props:any) {
+    let { moduleData } = props;
+    moduleData = Object.assign(entity, moduleData);
     const {children, isInMenu, id} = props;
     let com1 = "";
     if(Array.isArray(children)){
         com1 = children[0]
     }
-    const drag = function (ev: any, data:string):void {
-        ev.dataTransfer.setData("Text", data);
-        ev.dataTransfer.setData("handleType", isInMenu ? "add" : "move");
-        ev.dataTransfer.setData("id", id);
-    }
     return(
-        <div id={id} className="com-wrap12" draggable="true" onDragStart={(ev)=>{drag(ev, "wrap_wrap12")}}>
+        <div
+            id={id}
+            className="com-wrap12"
+            draggable="true"
+            onDragStart={(ev)=>{drag(ev, ComponentType.wrap_wrap12, isInMenu, id)}}
+            style={moduleData.style}
+        >
             {com1}
         </div>
     )

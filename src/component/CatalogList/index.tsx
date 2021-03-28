@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { Menu } from 'antd';
-import ButtonNormal from "@/mobile/component/button/buttonNormal"
 import Wrap12 from "@/mobile/component/wrap/wrap12"
 import Wrap66 from "@/mobile/component/wrap/wrap66";
 import TextCricle from "@/mobile/component/text/textCricle"
 import ImgNormal from "@/mobile/component/img/imgNormal"
 import NavBottom from "@/mobile/component/nav/navBottom"
-import { CalalogComList } from '@/const/calalog';
+import ButtonNormal from "@/mobile/component/button/buttonNormal"
 import "./index.scss"
 
 const { SubMenu } = Menu;
